@@ -11,6 +11,10 @@ function main() {
                 eliminarProducto()
                 break;
 
+            case "3":
+                modificarProducto()
+                break
+
             case "6":
                 mostrarReporte();
                 break;
@@ -23,6 +27,62 @@ function main() {
                 mostrarAlerta();
         }
     } while (flag);
+}
+
+
+function modificarProducto() {
+
+    //Creo el reporte mandando como parametro un false
+    //EL cual nos devuelve las lista de productos
+    const listaString = mostrarReporte(false);
+    const idModificar = prompt(listaString + " \n\nIngrese el identificador del producto a actualizar");
+
+    if (!listaDeProductos.some(producto => producto.id == idModificar)) {
+        mostrarAlerta("No existen productos con este indentificador")
+        return
+    }
+
+    //Buscamos el producto que contenga este id
+    const objModificar = listaDeProductos.find(producto => producto.id == idModificar)
+
+    //Utilizamos la función obtener datos y mandamos como parametro el objeto encontrado
+    const datos = obtenerDatos(objModificar)
+
+
+    //Actualizamos todos los atributos
+    //Si lo queremos hacer en una linea: 
+    // Object.keys(objModificar).map(key => objModificar[key] = datos[key])
+    // o
+    objModificar.nombre = datos.nombre
+    objModificar.cantidad = datos.cantidad
+    objModificar.categoria = datos.categoria
+    objModificar.precio = datos.precio
+
+
+    //Mostramos la alerta
+    mostrarAlerta(`El producto se modificó correctamante`)
+
+}
+
+function obtenerDatos(objModificar = {
+    nombre: "",
+    categoria: "",
+    cantidad: "",
+    precio: ""
+}) {
+    nombre = prompt("Ingrese el nombre del producto", objModificar.nombre);
+    categoria = prompt("Ingrese la categoria del producto", objModificar.categoria);
+    cantidad = Number(prompt("Ingrese la cantidad del producto", objModificar.cantidad));
+    precio = Number(prompt("Ingrese el precio del producto", objModificar.precio));
+
+    //Validación de números
+    if (isNaN(cantidad) || isNaN(precio)) {
+        mostrarAlerta("Cantidad y precio deben ser numericos");
+        return;
+    }
+
+    return { nombre, categoria, cantidad, precio }
+
 }
 
 function eliminarProducto() {
@@ -45,7 +105,7 @@ function eliminarProducto() {
     );
 }
 
-function mostrarReporte() {
+function mostrarReporte(imprimir = true) {
     if (listaDeProductos.length < 0) {
         mostrarAlerta("No hay productos en el inventario");
         return;
@@ -64,23 +124,22 @@ function mostrarReporte() {
             }. id: ${id} Nombre:${nombre}, Categoria:${categoria} Cantidad:${cantidad} Precio:${precio} \n`;
     });
 
-    mostrarAlerta(listaString);
+    if (imprimir) {
+        mostrarAlerta(listaString);
+        return
+    }
+
+    return listaString;
 }
 
 function agregarProducto() {
-    nombre = prompt("Ingrese el nombre del producto");
-    categoria = prompt("Ingrese la categoria del producto");
-    cantidad = Number(prompt("Ingrese la cantidad del producto"));
-    precio = Number(prompt("Ingrese el precio del producto"));
+    const objNuevo = obtenerDatos()
 
-    //Validación de números
-    if (isNaN(cantidad) || isNaN(precio)) {
-        mostrarAlerta("Cantidad y precio deben ser numericos");
-        return;
-    }
     const id = Date.now();
-    const nuevoProducto = { nombre, categoria, cantidad, precio, id };
+    const nuevoProducto = { id, ...objNuevo };
     listaDeProductos.unshift(nuevoProducto);
+
+    mostrarAlerta("Producto agregado correctamente")
 }
 
 function mostrarAlerta(mensaje = "opcion no valida") {

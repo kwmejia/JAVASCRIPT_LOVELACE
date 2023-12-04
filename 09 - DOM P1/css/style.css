@@ -1,0 +1,15 @@
+.imagen {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  border: 10px solid #000;
+  margin: 20px;
+}
+
+#titulo_contenedor {
+  font-size: 53px;
+  color: white;
+  font-weight: bold;
+  text-shadow: 1px 1px 10px red;
+  text-align: center;
+}

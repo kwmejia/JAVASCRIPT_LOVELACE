@@ -68,6 +68,30 @@ const coders = [
     { nombre: "Tomás", edad: 26, ciudad: "Medellin", genero: "M" },
 ];
 
+function cargarDatos() {
+    //Seleccionamos donde vamos a agregar
+    const tbody = document.getElementById("contenido");
+    //Ordenamos la lista
+    coders.sort((a, b) => a.nombre.localeCompare(b.nombre));
+    //Reinicio el tbody
+    tbody.innerHTML = "";
 
+    coders.forEach((estudiante, index) => {
+        const { ciudad, edad, genero, nombre } = estudiante;
+
+        tbody.innerHTML += `
+            <tr>
+                <td>${index + 1}</td>
+                <td>${nombre}</td>
+                <td>${edad}</td>
+                <td>${ciudad}</td>
+                <td>${genero}</td>
+            </tr>
+        `;
+    })
+}
+setTimeout(() => {
+    cargarDatos()
+}, 2000);
 
 

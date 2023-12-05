@@ -59,3 +59,15 @@ setInterval(() => {
     let colorRandom = Math.floor(Math.random() * 5);
     body.style.backgroundImage = `linear-gradient(90deg, ${listaDeColores[colorRandom]}, ${listaDeColores[colorRandom - 1]} `
 }, 1000)
+
+const coders = [
+    { nombre: "Terry", edad: 23, ciudad: "Medellin", genero: "M" },
+    { nombre: "Fabio", edad: 27, ciudad: "Medellin", genero: "M" },
+    { nombre: "Maria", edad: 22, ciudad: "Medellin", genero: "F" },
+    { nombre: "Darwing", edad: 18, ciudad: "Medellin", genero: "M" },
+    { nombre: "Tomás", edad: 26, ciudad: "Medellin", genero: "M" },
+];
+
+
+
+

@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/css2?family=Mountains+of+Christmas&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Mountains of Christmas", serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(#a2000a, #cf0000);
+}
+
+.contenedor {
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+.contenedor::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  background: url(../img/tree.png);
+  width: 100%;
+  height: 200px;
+  z-index: 1;
+}
+
+.contenedor .circulo {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.contenedor .circulo::before {
+  content: "";
+  position: absolute;
+  background: url(../img/santa.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 600px;
+  z-index: 2;
+  inset: -200px;
+  animation: animacionSanta 5s ease-in-out infinite;
+}
+
+.contenedor .nieve {
+  position: relative;
+  display: flex;
+}
+
+.contenedor .nieve span {
+  position: relative;
+  min-width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #fff;
+  margin: 0 0.8vw;
+  box-shadow: -100px 20px 5px #fff, 100px 20px 10px #fff;
+  animation: animacionNieve 15s linear infinite;
+  animation-duration: calc(75s / var(--i));
+}
+
+.contenedor .nieve span:nth-child(even) {
+  min-width: 10px;
+  height: 10px;
+}
+
+.contenedor .contenedor-timer {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.timer {
+  font-size: 52px;
+  color: #fafafa;
+  letter-spacing: 2px;
+  font-weight: bold;
+  position: relative;
+  margin-top: 15%;
+  z-index: 4;
+  text-shadow: 2px 2px 2px #000;
+}
+@keyframes animacionNieve {
+  0% {
+    transform: translateY(-10vh);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+@keyframes animacionSanta {
+  0% {
+    transform: translateY(-25px);
+  }
+
+  50% {
+    transform: translateY(25px);
+  }
+
+  100% {
+    transform: translateY(-25px);
+  }
+}

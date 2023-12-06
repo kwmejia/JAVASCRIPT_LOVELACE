@@ -49,4 +49,7 @@ maquinaEscribir()
 
 const textoAnimar = document.querySelector("#text");
 
-textoAnimar.innerHTML = textoAnimar.innerHTML.split("").map((letra, i) => `<span style="transition-delay:${i * 40}ms; filter: hue-rotate(${i * 30}deg);">${letra}</span>`).join("")
+textoAnimar.innerHTML = textoAnimar.innerHTML
+    .split("")
+    .map((letra, i) => `<span style="transition-delay:${i * 40}ms; filter: hue-rotate(${i * 30}deg);">${letra}</span>`)
+    .join("")

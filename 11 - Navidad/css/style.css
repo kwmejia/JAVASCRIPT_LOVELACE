@@ -93,6 +93,7 @@ body {
   margin-top: 15%;
   z-index: 4;
   text-shadow: 2px 2px 2px #000;
+  display: flex;
 }
 @keyframes animacionNieve {
   0% {

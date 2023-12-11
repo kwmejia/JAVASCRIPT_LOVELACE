@@ -12,6 +12,7 @@ body {
   align-items: center;
   min-height: 100vh;
   background: linear-gradient(#a2000a, #cf0000);
+  cursor: url(../img/cursor.png), default;
 }
 
 .contenedor {
@@ -95,6 +96,14 @@ body {
   text-shadow: 2px 2px 2px #000;
   display: flex;
   gap: 30px;
+}
+
+.timer .item {
+  display: flex;
+  align-items: center;
+}
+.timer .item p {
+  text-align: center;
 }
 
 .timer .item .item-text {

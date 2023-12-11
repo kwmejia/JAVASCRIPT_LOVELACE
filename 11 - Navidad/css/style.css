@@ -94,7 +94,13 @@ body {
   z-index: 4;
   text-shadow: 2px 2px 2px #000;
   display: flex;
+  gap: 30px;
 }
+
+.timer .item .item-text {
+  font-size: 14px;
+}
+
 @keyframes animacionNieve {
   0% {
     transform: translateY(-10vh);

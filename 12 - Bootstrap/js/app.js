@@ -1,5 +1,6 @@
 // Selectores
 const tbody = document.querySelector("#tbody");
+const alerta = document.querySelector("#alerta");
 
 /**Selectores de los inputs (entradas) */
 const nombreProducto = document.querySelector("#nombre_producto");
@@ -85,6 +86,21 @@ function mostrarProductos() {
 /**Está función se encarga de agregar 
  * y modificar un producto */
 function agregarProducto() {
+
+    /**Le adicionamos clases a nuestra alerta (d-none para no se visible) */
+    alerta.classList = "alert alert-danger d-none";
+    /**Validar  */
+
+    if ([nombreProducto.value,
+    cantidadProducto.value,
+    categoriaProducto.value,
+    precioProducto.value,
+    ].includes("")) {
+        /**Si algun campo está vacío */
+        alerta.textContent = "Todos los campos son obligatorios.";
+        alerta.classList.remove("d-none");
+        return
+    }
     const nuevoProducto = {
         nombre: nombreProducto.value,
         cantidad: cantidadProducto.value,

@@ -1,6 +1,25 @@
 // Selectores
 const tbody = document.querySelector("#tbody");
 
+/**Selectores de los inputs (entradas) */
+const nombreProducto = document.querySelector("#nombre_producto");
+const cantidadProducto = document.querySelector("#cantidad_producto");
+const precioProducto = document.querySelector("#precio_producto");
+const categoriaProducto = document.querySelector("#categoria_producto");
+const imagenProducto = document.querySelector("#imagen_producto");
+/** Botones*/
+const btnAgregar = document.querySelector("#btn_agregar");
+
+/**Eventos */
+//Cuando el usuario haga clic dentro del botón btnAgregar
+//Se ejecutará una función
+btnAgregar.addEventListener("click", function (event) {
+    //Quito los eventos por defecto
+    event.preventDefault();
+    //Si el usuario dio click se ejecuta esta función
+    agregarProducto();
+})
+
 //Lista de productos
 const listaProductos = [
     {
@@ -49,11 +68,11 @@ function mostrarProductos() {
                 <td>${cantidad}</td>
 
                 <td>
-                    <button class="btn btn-primary edit-product">
+                    <button class="btn btn-primary edit-product" data-id="${id}">
                         Editar
                     </button>
 
-                    <button class="btn btn-danger delete-product">
+                    <button class="btn btn-danger delete-product" data-id="${id}">
                         Eliminar
                     </button>
                 </td>
@@ -63,7 +82,21 @@ function mostrarProductos() {
     })
 }
 
+/**Está función se encarga de agregar 
+ * y modificar un producto */
+function agregarProducto() {
+    const nuevoProducto = {
+        nombre: nombreProducto.value,
+        cantidad: cantidadProducto.value,
+        categoria: categoriaProducto.value,
+        precio: precioProducto.value,
+        imagen: imagenProducto.value,
+        id: Date.now()
+    }
+    listaProductos.push(nuevoProducto);
+    mostrarProductos()
 
+}
 
 
 mostrarProductos()

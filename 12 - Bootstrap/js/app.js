@@ -101,6 +101,7 @@ function agregarProducto() {
         alerta.classList.remove("d-none");
         return
     }
+    /**Creo un nuevo objeto literal */
     const nuevoProducto = {
         nombre: nombreProducto.value,
         cantidad: cantidadProducto.value,
@@ -109,7 +110,22 @@ function agregarProducto() {
         imagen: imagenProducto.value,
         id: Date.now()
     }
+    /**Agrego al final de la lista el nuevo producto */
     listaProductos.push(nuevoProducto);
+
+    /**  Mostrar alerta de éxito*/
+    alerta.classList = "alert alert-success"
+    alerta.textContent = "Producto agregado correctamente."
+
+    /**Escondo la alerta despues de 3 segundos */
+    setTimeout(() => {
+        alerta.classList.add("d-none");
+    }, 3000);
+
+    /**Reseteamos el formulario */
+    document.querySelector("#form_productos").reset();
+
+    /**Mostramos de nuevo los productos */
     mostrarProductos()
 
 }

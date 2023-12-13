@@ -12,6 +12,7 @@ const imagenProducto = document.querySelector("#imagen_producto");
 const btnAgregar = document.querySelector("#btn_agregar");
 
 /**Eventos */
+
 //Cuando el usuario haga clic dentro del botón btnAgregar
 //Se ejecutará una función
 btnAgregar.addEventListener("click", function (event) {
@@ -21,8 +22,20 @@ btnAgregar.addEventListener("click", function (event) {
     agregarProducto();
 })
 
+//Escuchar cuando el usuario de clic en el cuerpo de la tabla
+tbody.addEventListener("click", (event) => {
+
+    /**Si a la etiqueta en la que se ejecutó el evento contiene la clase delete-product - entonces */
+    if (event.target.classList.contains("delete-product")) {
+        console.log("Eliminando");
+        /**Obtener el id del producto */
+        const id = event.target.getAttribute("data-id")
+        if (id) eliminarProducto(id);
+    }
+});
+
 //Lista de productos
-const listaProductos = [
+let listaProductos = [
     {
         id: Date.now(),
         nombre: "Pastas",
@@ -50,12 +63,14 @@ function mostrarProductos() {
             currency: "USD"
         });
 
+        const imgDefault = "https://img.freepik.com/vector-premium/concepto-menu-diseno-icono-comida-grafico-vector-ilustracion-10-eps_24911-20357.jpg?w=2000"
+
         tbody.innerHTML += `
             <tr>
                 <td>${indice + 1}</td>
                 <td> 
                     <img 
-                        src="${imagen}" 
+                        src="${imagen || imgDefault}" 
                         alt="img producto"
                         class="rounded-circle"
                         width="50px"
@@ -126,8 +141,15 @@ function agregarProducto() {
     document.querySelector("#form_productos").reset();
 
     /**Mostramos de nuevo los productos */
-    mostrarProductos()
+    mostrarProductos();
 
+}
+
+function eliminarProducto(id) {
+    /**Filtro todos los productos */
+    listaProductos = listaProductos.filter(producto => producto.id != id);
+
+    mostrarProductos();
 }
 
 

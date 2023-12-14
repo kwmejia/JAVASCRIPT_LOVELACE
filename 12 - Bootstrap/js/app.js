@@ -1,6 +1,7 @@
 // Selectores
 const tbody = document.querySelector("#tbody");
 const alerta = document.querySelector("#alerta");
+const tituloDrawer = document.querySelector("#offcanvasNavbarLabel");
 
 /**Selectores de los inputs (entradas) */
 const nombreProducto = document.querySelector("#nombre_producto");
@@ -10,7 +11,7 @@ const categoriaProducto = document.querySelector("#categoria_producto");
 const imagenProducto = document.querySelector("#imagen_producto");
 /** Botones*/
 const btnAgregar = document.querySelector("#btn_agregar");
-
+let productCache;
 /**Eventos */
 
 //Cuando el usuario haga clic dentro del botón btnAgregar
@@ -27,11 +28,23 @@ tbody.addEventListener("click", (event) => {
 
     /**Si a la etiqueta en la que se ejecutó el evento contiene la clase delete-product - entonces */
     if (event.target.classList.contains("delete-product")) {
-        console.log("Eliminando");
         /**Obtener el id del producto */
         const id = event.target.getAttribute("data-id")
         if (id) eliminarProducto(id);
+        //Para que no siga la función
+        return
     }
+
+    /**Si la etiqueta contiene la clase edit-product quiere decir que estamos editando */
+    if (event.target.classList.contains("edit-product")) {
+        console.log("Editandoooo")
+        /**Obtener el id del producto */
+        const id = event.target.getAttribute("data-id")
+        /**Si existe un id invoco la funcion */
+        if (id) cargarInformacion(id)
+    }
+
+
 });
 
 //Lista de productos
@@ -116,18 +129,33 @@ function agregarProducto() {
         alerta.classList.remove("d-none");
         return
     }
-    /**Creo un nuevo objeto literal */
-    const nuevoProducto = {
-        nombre: nombreProducto.value,
-        cantidad: cantidadProducto.value,
-        categoria: categoriaProducto.value,
-        precio: precioProducto.value,
-        imagen: imagenProducto.value,
-        id: Date.now()
-    }
-    /**Agrego al final de la lista el nuevo producto */
-    listaProductos.push(nuevoProducto);
 
+    /**Si existe un producto en cache  agrega*/
+    if (!productCache) {
+        /**Creo un nuevo objeto literal */
+        const nuevoProducto = {
+            nombre: nombreProducto.value,
+            cantidad: cantidadProducto.value,
+            categoria: categoriaProducto.value,
+            precio: precioProducto.value,
+            imagen: imagenProducto.value,
+            id: Date.now()
+        }
+        /**Agrego al final de la lista el nuevo producto */
+        listaProductos.push(nuevoProducto);
+
+    } else {
+        //De lo contrario actualizo el objeto que esta apuntando
+        //al mismo espacio de memoria que se quiere actualizar
+        productCache.nombre = nombreProducto.value;
+        productCache.cantidad = cantidadProducto.value;
+        productCache.precio = precioProducto.value;
+        productCache.categoria = cantidadProducto.value;
+        productCache.imagen = imagenProducto.value;
+
+        productCache = undefined;
+
+    }
     /**  Mostrar alerta de éxito*/
     alerta.classList = "alert alert-success"
     alerta.textContent = "Producto agregado correctamente."
@@ -150,6 +178,33 @@ function eliminarProducto(id) {
     listaProductos = listaProductos.filter(producto => producto.id != id);
 
     mostrarProductos();
+}
+
+/**Esta funcion se encarga de mostrar los valores en el drawer */
+function cargarInformacion(id) {
+
+    /**Busco el producto que contenga ese id */
+    productCache = listaProductos.find((product) => product.id == id);
+
+    console.log(productCache)
+
+    /**Asignar el valora a cada input */
+    nombreProducto.value = productCache.nombre;
+    cantidadProducto.value = productCache.cantidad;
+    precioProducto.value = productCache.precio;
+    categoriaProducto.value = productCache.categoria;
+    imagenProducto.value = productCache.imagen;
+
+
+    /**Selecciono el botón de editar desde el HTML */
+    const drawer = document.querySelector("#btnOpenDrawerEdit");
+
+    /**Obligo a hacer un clic al botón de abrir el drawer de editar */
+    drawer.click();
+
+    tituloDrawer.textContent = "Actualizar producto";
+    btnAgregar.textContent = "Actualizar";
+
 }
 
 

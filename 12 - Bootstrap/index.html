@@ -81,8 +81,24 @@
         <!-- columna 1 -->
         <div class="col-12 my-4">
           <div class="container-fluid d-flex justify-content-end">
+            <!-- buton para abir el drawer de editar -->
+            <button
+              class="btn btn-dark opacity-0"
+              id="btnOpenDrawerEdit"
+              type="button"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasNavbar"
+              aria-controls="offcanvasNavbar"
+              aria-label="Toggle navigation"
+              style="pointer-events: none"
+            >
+              Editar producto
+            </button>
+
+            <!-- boton para abir el drawer de insertar -->
             <button
               class="btn btn-dark"
+              id="btnOpenDrawerInsert"
               type="button"
               data-bs-toggle="offcanvas"
               data-bs-target="#offcanvasNavbar"
@@ -91,6 +107,7 @@
             >
               Agregar producto
             </button>
+
             <div
               class="offcanvas offcanvas-end bg-dark"
               tabindex="-1"

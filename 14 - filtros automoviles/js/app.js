@@ -8,6 +8,24 @@ const puertas = document.querySelector("#puertas")
 const transmision = document.querySelector("#transmision")
 const color = document.querySelector("#color")
 
+/**Objeto de busqueda */
+const datosBusqueda = {
+    marca: "",
+    year: "",
+    minimo: "",
+    maximo: "",
+    puertas: "",
+    transmision: "",
+    color: ""
+}
+/**Eventos */
+marca.addEventListener("input", function (event) {
+    datosBusqueda.marca = event.target.value;
+
+    //Filtramos
+    filtrarAutos();
+})
+
 
 document.addEventListener("DOMContentLoaded", function () {
     mostrarAutos(autos)
@@ -16,14 +34,32 @@ document.addEventListener("DOMContentLoaded", function () {
     const max = new Date().getFullYear();
     const min = max - 10
 
-
     for (let i = max; i >= min; i--) {
         const option = document.createElement("option");
         option.value = i;
         option.innerText = i;
-
+        year.appendChild(option)
     }
 })
+
+
+//Funciones
+function filtrarAutos() {
+    const resultado = autos.filter(filtrarPorMarca)
+
+    mostrarAutos(resultado)
+}
+
+function filtrarPorMarca(auto) {
+    //SI el usuario esta filtrando por marca entonces
+    if (datosBusqueda.marca) {
+        //Guarda el vehiculo solo si se cumple la condicion
+        return datosBusqueda.marca === auto.marca
+    }
+    //SI no se esta filtrando por marca entonces se retorna el auto completo
+    return auto;
+}
+
 
 function mostrarAutos(autos) {
 

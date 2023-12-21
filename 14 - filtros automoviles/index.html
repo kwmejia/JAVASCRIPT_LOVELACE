@@ -11,6 +11,7 @@
     <section class="banner">
       <!-- CONTENEDOR -->
       <div class="container">
+        <h1>Automoviles Deportivos</h1>
         <!-- FORMULARIO -->
         <form class="form-filter">
           <!-- FILA 1 -->
@@ -28,9 +29,82 @@
                 <option value="Dodge">Dodge</option>
               </select>
             </div>
+
+            <!-- SELECT AÑO -->
+            <div class="cont-select">
+              <label for="year">Año</label>
+              <select id="year">
+                <option value="">Seleccione</option>
+              </select>
+            </div>
+
+            <!-- SELECT MINIMO -->
+            <div class="cont-select">
+              <label for="minimo">Precio Min</label>
+              <select id="minimo">
+                <option value="">Seleccione</option>
+                <option value="10000">10.000</option>
+                <option value="20000">20.000</option>
+                <option value="30000">30.000</option>
+                <option value="40000">40.000</option>
+                <option value="50000">50.000</option>
+                <option value="60000">60.000</option>
+                <option value="70000">70.000</option>
+                <option value="80000">80.000</option>
+                <option value="90000">90.000</option>
+              </select>
+            </div>
+            <!-- SELECT MAXIMO -->
+            <div class="cont-select">
+              <label for="maximo">Precio Max</label>
+              <select id="maximo">
+                <option value="">Seleccione</option>
+                <option value="10000">10.000</option>
+                <option value="20000">20.000</option>
+                <option value="30000">30.000</option>
+                <option value="40000">40.000</option>
+                <option value="50000">50.000</option>
+                <option value="60000">60.000</option>
+                <option value="70000">70.000</option>
+                <option value="80000">80.000</option>
+                <option value="90000">90.000</option>
+              </select>
+            </div>
           </div>
           <!-- FILA2 -->
-          <div class="row"></div>
+          <div class="row">
+            <!-- SELECT PUERTAS -->
+            <div class="cont-select">
+              <label for="puertas">Puertas</label>
+              <select id="puertas">
+                <option value="">Seleccione</option>
+                <option value="2">2</option>
+                <option value="4">4</option>
+              </select>
+            </div>
+
+            <!-- SELECT Transmision -->
+            <div class="cont-select">
+              <label for="transmision">Transmisión</label>
+              <select id="transmision">
+                <option value="">Seleccione</option>
+                <option value="automatica">Automatica</option>
+                <option value="manual">Manual</option>
+              </select>
+            </div>
+
+            <!-- SELECT COLORES -->
+            <div class="cont-select">
+              <label for="color">Color</label>
+              <select id="color">
+                <option value="">Seleccione</option>
+                <option value="negro">Negro</option>
+                <option value="azul">Azul</option>
+                <option value="blanco">Blanco</option>
+                <option value="rojo">Rojo</option>
+              </select>
+            </div>
+          </div>
         </form>
       </div>
     </section>

@@ -18,11 +18,22 @@ const datosBusqueda = {
     transmision: "",
     color: ""
 }
+
 /**Eventos */
+
+/**El evento input se dispara cada vez que cambia el valor
+ * del input en el HTML
+ */
 marca.addEventListener("input", function (event) {
     datosBusqueda.marca = event.target.value;
 
     //Filtramos
+    filtrarAutos();
+})
+
+
+year.addEventListener("input", function (event) {
+    datosBusqueda.year = event.target.value;
     filtrarAutos();
 })
 
@@ -45,9 +56,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //Funciones
 function filtrarAutos() {
-    const resultado = autos.filter(filtrarPorMarca)
+    const resultado = autos
+        .filter(filtrarPorMarca)
+        .filter(filtrarPorYear)
 
     mostrarAutos(resultado)
+}
+
+function filtrarPorYear(auto) {
+    if (datosBusqueda.year) {
+        return datosBusqueda.year == auto.year
+    }
+
+    return auto
 }
 
 function filtrarPorMarca(auto) {

@@ -1,11 +1,16 @@
 /**Selectores */
 const contenedorProductos = document.querySelector("#lista-productos")
 const tbody = document.querySelector("#lista-carrito tbody")
-
+const btnToggleMode = document.querySelector("#btnToggleMode")
 /**Inicio mi lista de carrito de compras */
 let carritoCompras = []
 
 /**Eventos */
+
+btnToggleMode.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode")
+})
+
 contenedorProductos.addEventListener("click", function (event) {
 
     /**Validamos que el elemento al que se le dio clic

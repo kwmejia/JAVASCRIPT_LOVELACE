@@ -3,10 +3,9 @@
 //Selectores
 const btnText = document.querySelector("#btnLoadText")
 const textoHTML = document.querySelector("#texto")
-console.log(premiarProyecto)
 //Eventos
 btnText.addEventListener("click", () => {
-    consumirTxt()
+    consumirTxtSegundaForma()
 })
 
 function consumirTxt() {
@@ -26,3 +25,26 @@ function consumirTxt() {
             textoHTML.textContent = valor
         })
 }
+
+
+async function consumirTxtSegundaForma() {
+    const URL = "data/data.txt"
+    try {
+        //Plan A
+        const respuesta = await fetch(URL)
+        if (respuesta.status != 200) {
+            throw new Error("Ocurrió un error")
+        }
+        const valor = await respuesta.text()
+        textoHTML.textContent = valor;
+    } catch (error) {
+        //Pla B
+        console.error(error)
+        textoHTML.textContent = error;
+
+    }
+
+}
+
+
+

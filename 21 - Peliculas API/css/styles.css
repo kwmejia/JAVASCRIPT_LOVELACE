@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+:root {
+  --primary: #222;
+  --secondary: #6441a4;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--primary);
+}
+
+/*BANNER**/
+
+.banner {
+  height: 40vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/**INPUTS*/
+.input-box {
+  position: relative;
+  width: 600px;
+}
+
+.input-box input {
+  width: 600px;
+  padding: 20px;
+  border: 2px solid var(--secondary);
+  outline: none;
+  border-radius: 10px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 16px;
+  transition: 0.5s;
+}
+
+.input-box span {
+  position: absolute;
+  left: 0;
+  padding: 20px;
+  pointer-events: none;
+  font-size: 16px;
+  color: #fff;
+  transition: 0.5s;
+}
+
+.input-box input:focus ~ span,
+.input-box input:valid ~ span {
+  transform: translateX(20px) translateY(-10px);
+  font-size: 14px;
+  background: var(--secondary);
+  padding: 4px 10px;
+}

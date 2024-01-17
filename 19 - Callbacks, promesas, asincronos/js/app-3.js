@@ -3,7 +3,7 @@
 //Selectores
 const btnText = document.querySelector("#btnLoadText")
 const textoHTML = document.querySelector("#texto")
-
+console.log(premiarProyecto)
 //Eventos
 btnText.addEventListener("click", () => {
     consumirTxt()

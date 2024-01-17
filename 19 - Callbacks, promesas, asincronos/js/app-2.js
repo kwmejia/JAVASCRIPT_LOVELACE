@@ -2,7 +2,7 @@
 
 //Crear una promesa
 
-const premiarProyecto = new Promise((resolve, reject) => {
+export const premiarProyecto = new Promise((resolve, reject) => {
     //Logica de la promesa
     const premiar = true;
 

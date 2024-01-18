@@ -3,6 +3,7 @@
 :root {
   --primary: #222;
   --secondary: #6441a4;
+  --black: #000;
 }
 
 * {
@@ -61,4 +62,17 @@ body {
   font-size: 14px;
   background: var(--secondary);
   padding: 4px 10px;
+}
+
+/*CARDS*/
+.container-cards {
+  margin: 20px 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.container-cards .card {
+  background: var(--black);
 }

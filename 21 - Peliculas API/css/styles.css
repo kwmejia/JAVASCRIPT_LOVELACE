@@ -109,3 +109,22 @@ body {
   padding: 10px 20px;
   border-radius: 10px;
 }
+
+/**Card SHOW MORE**/
+
+.card-show-more {
+  display: flex;
+  width: 70%;
+  gap: 20px;
+}
+
+.card-show-more p {
+  color: #fff;
+  font-size: 16px;
+  font-weight: bolder;
+  margin-top: 10px;
+}
+
+.card-show-more p span {
+  font-weight: normal;
+}

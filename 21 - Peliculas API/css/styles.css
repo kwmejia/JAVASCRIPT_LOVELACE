@@ -128,3 +128,9 @@ body {
 .card-show-more p span {
   font-weight: normal;
 }
+
+.bx-arrow-back {
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+}

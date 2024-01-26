@@ -20,6 +20,11 @@ function registerUser() {
     //2. Contraseña segura
     console.log(validated, message)
 
+    if (!validated) {
+        showAlert(message)
+        return
+    }
+
     //3. No existe una cuenta con este correo
 
 }
@@ -31,4 +36,19 @@ function validatePassword() {
     }
 
     return { validated: true }
+}
+
+
+
+function showAlert(message) {
+    Swal.fire({
+        title: 'Error!',
+        text: message,
+        icon: 'error',
+        toast: "true",
+        timer: 4000,
+        showConfirmButton: false,
+        position: "bottom-right",
+        confirmButtonText: 'Aceptar'
+    })
 }

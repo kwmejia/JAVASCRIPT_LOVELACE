@@ -11,12 +11,38 @@ document.addEventListener("DOMContentLoaded", () => {
     getUsers()
 })
 
+
+document.body.addEventListener("click", (event) => {
+
+    //Quitar las acciones por defecto
+    // event.preventDefault()
+
+    //SI a la etiqueta que se le dió clic contiene la clase btn-delete entonces:
+    if (event.target.classList.contains("btn-delete")) {
+        //Extraemos el valor del id
+        const id = event.target.getAttribute("user-id")
+        deleteUser(id)
+    }
+
+    if (event.target.classList.contains("btn-edit")) {
+        const id = event.target.getAttribute("user-id")
+        loadingInfo(id)
+
+    }
+})
+
 form.addEventListener("submit", (event) => {
     //Prevenir los eventos por defecto
     event.preventDefault();
 
-    //Función para crear un usuario
-    createUser()
+    //SI idUser tiene valor entonces:
+    if (idUser.value) {
+        //Actualizar
+        updateUser()
+    } else {
+        //Función para crear un usuario
+        createUser()
+    }
 })
 
 //Funciones
@@ -44,7 +70,6 @@ async function createUser() {
         body: JSON.stringify(user)
     })
 
-    console.log(response)
 
     getUsers()
 
@@ -71,11 +96,43 @@ function renderUsers(users) {
                 <td>${user.age}</td>
                 <td>
                     <button class="btn btn-primary btn-edit" user-id="${user.id}">Editar</button>
-                    <button class="btn btn-danger btn-delete" user-id="${user.id}>Eliminar</button>
+                    <button class="btn btn-danger btn-delete" user-id="${user.id}">Eliminar</button>
                 </td>
             </tr>
         `;
     });
+}
+
+async function loadingInfo(id) {
+    const response = await fetch(`${URLBase}/users/${id}`)
+    const user = await response.json()
+
+    nameUser.value = user.name;
+    ageUser.value = user.age;
+    idUser.value = user.id;
+}
+
+async function deleteUser(id) {
+    await fetch(`${URLBase}/users/${id}`, {
+        method: "DELETE"
+    });
+}
+
+async function updateUser() {
+    const id = idUser.value
+
+    const user = {
+        name: nameUser.value,
+        age: ageUser.value
+    }
+
+    await fetch(`${URLBase}/users/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(user)
+    })
 }
 
 function cleanTbody() {

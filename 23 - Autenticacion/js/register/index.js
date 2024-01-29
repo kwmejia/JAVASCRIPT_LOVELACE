@@ -36,6 +36,12 @@ async function registerUser() {
 
 
     //3. No existe una cuenta con este correo
+
+    if (await validateEmail()) {
+        showAlert("El email ya se encuentra registrado.")
+        return
+    }
+
     console.log("TODO CORRECTO")
 
     try {
@@ -53,6 +59,15 @@ async function registerUser() {
 
 }
 
+
+async function validateEmail() {
+    const response = await fetch(`${URL}?email=${email.value}`)
+
+    const data = await response.json()
+
+    return data.length
+
+}
 
 function validatePassword() {
     if (password.value != passwordConfirmation.value) {

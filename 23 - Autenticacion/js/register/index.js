@@ -4,6 +4,7 @@ const email = document.getElementById("email")
 const password = document.getElementById("password")
 const passwordConfirmation = document.getElementById("password-confirmation")
 
+const URL = "http://localhost:3000/users"
 
 form.addEventListener("submit", (event) => {
     // Eliminar las acciones por defecto
@@ -13,7 +14,7 @@ form.addEventListener("submit", (event) => {
     registerUser()
 })
 
-function registerUser() {
+async function registerUser() {
     //1. La contraseñas tienen que ser iguales
 
     const { validated, message } = validatePassword();
@@ -25,9 +26,30 @@ function registerUser() {
         return
     }
 
-    const { validated: validatedSegurity, message: messageError } = validatePasswordSegurity()
+    const { validated: validatedSegurity, message: messageError } = validatePasswordSegurity();
+
+    if (!validatedSegurity) {
+        showAlert(messageError)
+        return
+    }
+
+
 
     //3. No existe una cuenta con este correo
+    console.log("TODO CORRECTO")
+
+    try {
+        await fetch(URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email: email.value, password: password.value })
+        })
+
+    } catch (error) {
+        showAlert(error)
+    }
 
 }
 

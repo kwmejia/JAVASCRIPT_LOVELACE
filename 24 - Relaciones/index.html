@@ -34,10 +34,68 @@
         aria-hidden="true"
       >
         <div class="modal-dialog">
-          <form class="modal-content">
+          <form class="modal-content" id="form-Author">
             <div class="modal-header">
               <h1 class="modal-title fs-5" id="staticBackdropLabel">
                 Modal title
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="name-author" class="form-label">Name</label>
+                <input type="text" id="name-author" class="form-control" />
+              </div>
+
+              <div class="mb-3">
+                <label for="age-author" class="form-label">Age</label>
+                <input type="number" id="age-author" class="form-control" />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Button trigger modal -->
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#formBooks"
+      >
+        Add new Book
+      </button>
+
+      <!-- Modal Books-->
+      <div
+        class="modal fade"
+        id="formBooks"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <form class="modal-content" id="form-books">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                Form Books
               </h1>
               <button
                 type="button"

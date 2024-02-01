@@ -11,5 +11,18 @@
       "age": "26"
     }
   ],
-  "books": []
+  "books": [
+    {
+      "id": "c7f1",
+      "name": "el olvido que seremos",
+      "date": "2024-01-31",
+      "athorId": "b5a1"
+    },
+    {
+      "id": "cc89",
+      "name": "Nuevo libro",
+      "date": "2024-01-17",
+      "athorId": "6a21"
+    }
+  ]
 }

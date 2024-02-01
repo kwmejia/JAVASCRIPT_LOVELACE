@@ -8,15 +8,19 @@ const nameBook = document.getElementById("name-book")
 const dateBook = document.getElementById("date-book")
 const selectAuthor = document.getElementById("idAuthor")
 
+const listBooks = document.getElementById("listBooks")
+
 const URLAuthor = "http://localhost:3000/athors"
+const URLBooks = "http://localhost:3000/books"
 
 document.addEventListener("DOMContentLoaded", () => {
     loadingSelectAuthor()
+    getBooks()
 })
 
 formBooks.addEventListener("submit", (event) => {
     event.preventDefault()
-    // createAuthor()
+    createBook()
 })
 
 formAuthor.addEventListener("submit", (event) => {
@@ -24,6 +28,32 @@ formAuthor.addEventListener("submit", (event) => {
 
     createAuthor()
 })
+
+async function getBooks() {
+    const response = await fetch(`${URLBooks}?_embed=athor`)
+    const data = await response.json()
+
+    console.log(data)
+    data.forEach(books => {
+        listBooks.innerHTML += `
+            <li>Nombre: ${books.name} - Autor: ${books.athor.name}</li>
+        `;
+    })
+}
+
+async function createBook() {
+    await fetch(URLBooks, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            name: nameBook.value,
+            date: dateBook.value,
+            athorId: selectAuthor.value
+        })
+    })
+}
 
 async function loadingSelectAuthor() {
     const response = await fetch(URLAuthor)
